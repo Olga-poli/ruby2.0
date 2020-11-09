@@ -1,0 +1,84 @@
+<script>
+  src="/path/to/application.js"
+</script>
+
+<div class="todo-page">
+  <div class="todo-page__container container">
+    <h1 class="todo-page__title">Simple todo list</h1>
+    <h2 class="todo-page__subtitle">From Ruby Garage</h2>
+
+    <div class="empty-tasks__card main-card">
+      
+      <p class="empty-tasks__descr">Plan your tasks and stay organized.</p>
+
+      <a onclick="showForm()" class="main-btn">Start now</a>
+    </div>
+  </div>
+</div>
+
+<div id="addForm" style="display:none">
+<div class="goals-page">
+  <div class="main-alert main-alert--error">
+    <i class="main-alert__icon icon icon-triangle-warning"></i>
+    <p class="main-alert__txt">Please fill in all necessary fields</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-3">
+        <h1 class="goals-page__title">Create a Goal</h1>
+
+        <div class="create-goal__card main-card">
+          <form id="formId">
+            <!-- To show error style add main-input--error to main-input -->
+            <div class="main-input main-input--error">
+              <label class="main-input__label" for="goal_title">Goal Title</label>
+              <input id="titleInput" class="main-input__field" type="text" id="goal_title" />
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div class="main-input">
+              <label class="main-input__label" for="goal_descr">Description</label>
+              <textarea title="Describe new task" id="descriptionInput" rows="4" class="main-input__field main-input__field--textarea"></textarea>
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div class="create-goal__input-short main-input">
+              <label class="main-input__label" for="goal_priority">Priority</label>
+              <select id="goal_priority" class="main-input__field main-input__field--xs">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div class="create-goal__input-short main-input">
+              <label class="main-input__label" for="goal_date">Due Date</label>
+              <input class="main-input__field main-input__field--xs" type="date" id="goal_date" />
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div>
+              <button type="button" onclick="cancel()">Cancel</button>
+              <button type="button" onclick="send()">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
