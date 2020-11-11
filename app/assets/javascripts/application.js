@@ -23,6 +23,8 @@ function cancel(){
 function send() {
     let description = document.getElementById("descriptionInput").value;
     let title = document.getElementById("titleInput").value;
+    let priority = document.getElementById('task_priority').value;
+    let duedate = document.getElementById('task_date').value;
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", '/tasks', true);
@@ -35,14 +37,16 @@ function send() {
             
         }
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 404) {
-            alert('Fuck, no controller found!');
+            alert('No controller found!');
         }
         cancel();
     }
     let data = {
-        desc: description,
-        title: title
+        description: description,
+        title: title,
+        priority: priority,
+        due_date: duedate,
     };
     
     xhr.send(JSON.stringify(data));
-  }
+    }

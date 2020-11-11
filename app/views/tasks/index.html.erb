@@ -17,7 +17,7 @@
 </div>
 
 <div id="addForm" style="display:none">
-<div class="goals-page">
+<div class="tasks-page">
   <div class="main-alert main-alert--error">
     <i class="main-alert__icon icon icon-triangle-warning"></i>
     <p class="main-alert__txt">Please fill in all necessary fields</p>
@@ -25,14 +25,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-3">
-        <h1 class="goals-page__title">Create a Goal</h1>
+        <h1 class="tasks-page__title">Create a task</h1>
 
-        <div class="create-goal__card main-card">
+        <div class="create-task__card main-card">
           <form id="formId">
             <!-- To show error style add main-input--error to main-input -->
             <div class="main-input main-input--error">
-              <label class="main-input__label" for="goal_title">Goal Title</label>
-              <input id="titleInput" class="main-input__field" type="text" id="goal_title" />
+              <label class="main-input__label" for="task_title">task Title</label>
+              <input id="titleInput" class="main-input__field" type="text" id="task_title" />
               <div class="main-input__message">
                 <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
                 <span class="main-input__message-txt">Error message</span>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="main-input">
-              <label class="main-input__label" for="goal_descr">Description</label>
+              <label class="main-input__label" for="task_descr">Description</label>
               <textarea title="Describe new task" id="descriptionInput" rows="4" class="main-input__field main-input__field--textarea"></textarea>
               <div class="main-input__message">
                 <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
@@ -48,12 +48,12 @@
               </div>
             </div>
 
-            <div class="create-goal__input-short main-input">
-              <label class="main-input__label" for="goal_priority">Priority</label>
-              <select id="goal_priority" class="main-input__field main-input__field--xs">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+            <div class="create-task__input-short main-input">
+              <label class="main-input__label" for="task_priority">Priority</label>
+              <select id="task_priority" class="main-input__field main-input__field--xs">
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
               </select>
               <div class="main-input__message">
                 <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
@@ -61,9 +61,9 @@
               </div>
             </div>
 
-            <div class="create-goal__input-short main-input">
-              <label class="main-input__label" for="goal_date">Due Date</label>
-              <input class="main-input__field main-input__field--xs" type="date" id="goal_date" />
+            <div class="create-task__input-short main-input">
+              <label class="main-input__label" for="task_date">Due Date</label>
+              <input class="main-input__field main-input__field--xs" type="date" id="task_date" />
               <div class="main-input__message">
                 <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
                 <span class="main-input__message-txt">Error message</span>

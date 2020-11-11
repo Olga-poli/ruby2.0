@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_142356) do
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.date "due_date", null: false
-    t.integer "priority", null: false
+    t.date "due_date"
+    t.integer "priority", default: 0, null: false
     t.boolean "complete", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
