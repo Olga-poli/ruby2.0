@@ -1,4 +1,89 @@
-<h1>Simple todo list</h1>
-<h2>from Ruby Garage</h2>
-<p>Find me in app/views/static_pages/todogarage.html.erb</p>
-<%= link_to 'Get Started', tasks_path %>
+<script>
+  src="/path/to/application.js"
+</script>
+
+<div>
+  <div>
+    <h1>Simple todo list</h1>
+    <h2>From Ruby Garage</h2>
+
+    <div>
+      
+      <p>Plan your tasks and stay organized.</p>
+
+      <a onclick="showForm()" class="btn btn-primary btn-sm">Start now</a>
+    </div>
+  </div>
+    <table id="task_table" class="table">
+      <thead>
+        <tr>
+          <!-- <th>done</th> -->
+          <th>title</th>
+          <th>date</th>
+          
+        </tr>
+      </thead>
+    </table>
+  <!-- <div id="task_table">
+      <div><input id="todo_1" type="checkbox"><label for="todo_1">something</label></div>
+      <div><span id="todo_1" type="checkbox">test title</span></div>
+      <div><input class="main-input__field main-input__field--xs" type="date" id="task_date" disabled value="2020-10-10"/></div>
+  </div> -->
+</div>
+
+<div id="addForm" style="display:none">
+<div class="tasks-page">
+  <div">
+    <i class="alert_icon></i>
+    <p class="alert_txt">Please fill in all necessary fields</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-3">
+        <h1 class="tasks-page__title">Create a task</h1>
+        <div class="create-task__card main-card form-group">
+          <form id="formId">
+            <!-- To show error style add main-input--error to main-input -->
+            <div class="main-input main-input--error">
+              <label class="main-input__label" for="titleInput">Title</label>
+              <input id="titleInput" class="main-input__field form-control" type="text" />
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div class="create-task__input-short main-input">
+              <label class="main-input__label" for="task_priority">Priority</label>
+              <select id="task_priority" class="main-input__field main-input__field--xs form-control">
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+              </select>
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div class="create-task__input-short main-input">
+              <label class="main-input__label" for="task_date">Due Date</label>
+              <input class="main-input__field main-input__field--xs" type="date" id="task_date" />
+              <div class="main-input__message">
+                <i class="main-input__message-icon icon icon-triangle-warning-sm"></i>
+                <span class="main-input__message-txt">Error message</span>
+              </div>
+            </div>
+
+            <div>
+              <button type="button" onclick="cancel()">Cancel</button>
+              <button type="button" onclick="send()">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

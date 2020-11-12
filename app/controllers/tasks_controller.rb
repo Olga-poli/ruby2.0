@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   protect_from_forgery
   def index
+    @tasks = Task.all.order('due_date, priority DESC, title')
+    render json: {data:@tasks}
   end
   def create 
     @task = Task.new(task_params)
@@ -10,6 +12,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :priority, :due_date)
+    params.require(:task).permit(:title, :priority, :due_date)
   end
 end
