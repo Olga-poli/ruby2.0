@@ -17,8 +17,9 @@
 function showForm(){
     document.querySelector('#addForm').style.display='block';
 }
-function cancel(){
-    document.querySelector('#addForm').style.display='none';
+function cancel() {
+    $('#addForm').modal('hide');
+    // document.querySelector('#addForm').style.display='none';
 }
 function send() {
     let title = document.getElementById("titleInput").value;
@@ -69,16 +70,57 @@ function show() {
     
     xhr.send();
 }
-// show();
 
 $(document).ready( function () {
     $('#task_table').DataTable(
         {
+            "bSort" : false,
             "ajax": "tasks",
             "columns": [
                 { "data": "title" },
                 { "data": "due_date" },
+                {
+                    "data": "complete",
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            if (data === true) {
+                                str = 'checked';
+                            } else {
+                                str = '';
+                            }
+                            str = (data ? 'checked' : '');
+                            return '<input type="checkbox" class="editor-active form-control" '+ str +' data-id="'+row.id+'">';
+                        }
+                        return data;
+                    },
+                    className: "dt-body-center"
+                }
             ]
         }
     );
-} );
+    $('#task_table').on('change', 'input[type="checkbox"]', function (event) {
+        let id = this.dataset.id;
+        let complete = this.checked;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("PATCH", '/tasks/'+id, true);
+
+        xhr.setRequestHeader("Content-type", "application/json");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 204) {
+                // todo show success message
+                $('#task_table').DataTable().ajax.reload();
+                
+            }
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 404) {
+                alert('No controller found!');
+            }
+        }
+        let data = {
+            complete: complete
+        };
+        
+        xhr.send(JSON.stringify(data));
+    });
+});
