@@ -21,4 +21,9 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :priority, :due_date)
   end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+  end 
 end

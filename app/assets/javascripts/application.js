@@ -89,12 +89,19 @@ $(document).ready( function () {
                                 str = '';
                             }
                             str = (data ? 'checked' : '');
-                            return '<input type="checkbox" class="editor-active form-control" '+ str +' data-id="'+row.id+'">';
+                            return '<input type="checkbox" class="form-check-input" ' + str + ' data-id="'+row.id+'">';
                         }
                         return data;
                     },
                     className: "dt-body-center"
-                }
+                },
+                
+                {
+                    "data": "id",
+                    render: function (data, type, row) {
+                        return '<button class="delete-btn btn btn-outline-dark"' + ' data-id="'+data+'">X</button>';
+                    }
+                },
             ]
         }
     );
@@ -123,4 +130,18 @@ $(document).ready( function () {
         
         xhr.send(JSON.stringify(data));
     });
+    
+    $('#task_table').on('click', 'button.delete-btn', function (event) {
+        let id = this.dataset.id;
+        let xhr = new XMLHttpRequest();
+        xhr.open("DELETE", '/tasks/' + id, true);
+        xhr.onload = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 204) {
+                // todo show success message
+                $('#task_table').DataTable().ajax.reload();
+            }
+        }
+        xhr.send(null);
+    }
+    )
 });
