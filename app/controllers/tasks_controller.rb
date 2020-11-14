@@ -8,8 +8,12 @@ class TasksController < ApplicationController
   def create 
     @task = Task.new(task_params)
     @task.save
-    render json: @task
     # todo save to database
+    if @task.save
+      render json: @task
+    else
+      render json:{error:'something wrong', errors: @task.errors}
+    end
   end
 
   def update

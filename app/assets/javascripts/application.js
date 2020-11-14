@@ -17,9 +17,15 @@
 function showForm(){
     document.querySelector('#addForm').style.display='block';
 }
+function showError(result) {
+    document.querySelector('.error').innerHTML = Object.keys(result.errors)[0] + ' ' + Object.values(result.errors)[0];
+    document.querySelector('.error').style.visibility ='visible';
+}
+function hideError() {
+    document.querySelector('.error').style.visibility = 'hidden';
+}
 function cancel() {
     $('#addForm').modal('hide');
-    // document.querySelector('#addForm').style.display='none';
 }
 function send() {
     let title = document.getElementById("titleInput").value;
@@ -34,13 +40,17 @@ function send() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             // todo show success message
-            $('#task_table').DataTable().ajax.reload();
-            
+            let result = JSON.parse(xhr.response);
+            if (result.error === undefined) {
+                $('#task_table').DataTable().ajax.reload();
+                cancel();
+            } else {
+                showError(result);
+            }
         }
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 404) {
             alert('No controller found!');
         }
-        cancel();
     }
     let data = {
         title: title,
@@ -74,7 +84,7 @@ function show() {
 $(document).ready( function () {
     $('#task_table').DataTable(
         {
-            "bSort" : false,
+            "bSort" : true,
             "ajax": "tasks",
             "columns": [
                 { "data": "title" },
@@ -100,11 +110,13 @@ $(document).ready( function () {
                     "data": "id",
                     render: function (data, type, row) {
                         return '<button class="delete-btn btn btn-outline-dark"' + ' data-id="'+data+'">X</button>';
-                    }
+                    },
+                    orderable: false
                 },
             ]
         }
     );
+
     $('#task_table').on('change', 'input[type="checkbox"]', function (event) {
         let id = this.dataset.id;
         let complete = this.checked;
@@ -142,6 +154,7 @@ $(document).ready( function () {
             }
         }
         xhr.send(null);
-    }
-    )
+    });
+
+    $('#addForm').on('hidden.bs.modal', hideError);
 });
