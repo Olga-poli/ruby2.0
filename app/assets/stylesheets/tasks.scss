@@ -1,7 +1,32 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+}
+.sidebar {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: 25%;
+  overflow: auto;
+  padding: 10px;
+  background-color: rgb(241, 241, 241);
+}
+.main-content {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: 70%;
+  overflow: auto;
+}
 .main-input__message-txt {
   display: none;
 }
@@ -12,14 +37,7 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.sidebar {
-  padding: 10px;
-  float: left;
-  height: 800px;
-  background-color: rgb(241, 241, 241);
-}
 .h1 {
-  // background-color: #007bff;
   color: #007bff;
   font-size: 2rem;
   padding: 5px;
@@ -40,7 +58,7 @@
 }
 .table-container {
   display: flex;
-  width: 1000px;
+  width: 100%;
   padding-left: 50px;
   padding-top: 40px;
 }
